@@ -29,6 +29,7 @@ local function FindRemote(Item, args)
         end
         wait(0.01)
         if newFound == True then
+            print("Remote found, exiting loop.")
             break
         end
     end
