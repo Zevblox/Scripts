@@ -18,7 +18,7 @@ local function FindRemote(Item, args)
                     v:FireServer(unpack(args))
                     wait(0.5)
                     print(tostring(#Item:GetChildren()).."|"..tostring(Item:FindFirstChild("_attachOccupied")))
-                    if Item:FindFirstChild("_attachOccupied") or #Item:GetChildren() == 3 then
+                    if Item:FindFirstChild("_attachOccupied") ~= nil or #Item:GetChildren() == 3 then
                         Remote = v
                         newFound = True
                         print("Remote found...")
