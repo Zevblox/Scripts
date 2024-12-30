@@ -8,16 +8,16 @@ local Remote = False
 local function FindRemote(Item, args)
     local newfound = False
     for _, Folder in pairs(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("DataService"):GetChildren()) do
-        print("Folder: "..Folder)
+        print("Folder: "..tostring(Folder))
         if Folder:IsA("Folder") and Folder.Name == RemoteName then
-            print("Ok Folder: "..Folder)
+            print("Ok Folder: "..tostring(Folder))
             for _, v in pairs(Folder:GetChildren()) do
-                print("Remote: "..v)
+                print("Remote: "..tostring(v))
                 if v:IsA("RemoteEvent") and v.Name == RemoteName then
-                    print("Ok Remote: "..v)
+                    print("Ok Remote: "..tostring(v))
                     v:FireServer(unpack(args))
                     wait(0.5)
-                    print(#Item:GetChildren())
+                    print(tostring(#Item:GetChildren()).."|"..tostring(Item:FindFirstChild("_attachOccupied")))
                     if Item:FindFirstChild("_attachOccupied") or #Item:GetChildren() == 3 then
                         Remote = v
                         newFound = True
