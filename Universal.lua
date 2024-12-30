@@ -19,7 +19,7 @@ local function FindRemote(Item, args)
                     --print(tostring(#Item:GetChildren()).."|"..tostring(Item:FindFirstChild("_attachOccupied")))
                     if Item:FindFirstChild("_attachOccupied") ~= nil or #Item:GetChildren() == 3 then
                         Remote = v
-                        print("Remote found...")
+                        print("Remote found.")
                         break
                     end
                 end
@@ -55,8 +55,13 @@ for _, Obj in pairs(PlotObjects) do
                         Remote:FireServer(unpack(args))
                         wait(0.5)
                         if Item:FindFirstChild("_attachOccupied") == nil then
-                            print("Saved remote didn't work, finding remote...")
-                            FindRemote(Item, args)
+                            wait(0.5)
+                            Remote:FireServer(unpack(args))
+                            wait(0.5)
+                            if Item:FindFirstChild("_attachOccupied") == nil then
+                                print("Saved remote didn't work, finding remote...")
+                                FindRemote(Item, args)
+                            end
                         end
                     else
                         print("No saved remote, finding remote...")
