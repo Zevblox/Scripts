@@ -6,7 +6,6 @@ local RemoteName = game:GetService("ReplicatedStorage"):WaitForChild("Modules"):
 local Remote = False
 
 local function FindRemote(Item, args)
-    local newFound = False
     for _, Folder in pairs(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("DataService"):GetChildren()) do
         --print("Folder: "..tostring(Folder))
         if Folder:IsA("Folder") and Folder.Name == RemoteName then
@@ -21,23 +20,21 @@ local function FindRemote(Item, args)
                     if Item:FindFirstChild("_attachOccupied") ~= nil or #Item:GetChildren() == 3 then
                         Remote = v
                         print("Remote found...")
-                        newFound = True
                         break
-                    else
-                        newFound = False
-                   end
+                    end
                 end
-                print(tostring(newFound))
+                if Item:FindFirstChild("_attachOccupied") ~= nil or #Item:GetChildren() == 3 then
+                    print("Remote found, exiting Remote loop.")
+                    break
+                end
             end
         end
         wait(0.01)
-        print(tostring(newFound))
-        if newFound then
-            print("Remote found, exiting loop.")
+        if Item:FindFirstChild("_attachOccupied") ~= nil or #Item:GetChildren() == 3 then
+            print("Remote found, exiting Folder loop.")
             break
         end
     end
-    print("Checked all...")
 end
 
 for _, Obj in pairs(PlotObjects) do
