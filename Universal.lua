@@ -20,15 +20,19 @@ local function FindRemote(Item, args)
                     --print(tostring(#Item:GetChildren()).."|"..tostring(Item:FindFirstChild("_attachOccupied")))
                     if Item:FindFirstChild("_attachOccupied") ~= nil or #Item:GetChildren() == 3 then
                         Remote = v
-                        newFound = True
                         print("Remote found...")
+                        newFound = True
                         break
+                    else
+                        newFound = False
                    end
                 end
+                print(tostring(newFound))
             end
         end
         wait(0.01)
-        if newFound == True then
+        print(tostring(newFound))
+        if newFound then
             print("Remote found, exiting loop.")
             break
         end
